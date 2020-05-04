@@ -3,7 +3,7 @@ require(phonTools)
 
 #Set the parameters (frequency in Hertz)
 frequency1 = 500
-frequency2 = 1000
+frequency2 = 900
 amplitude = 10
 
 #Set how many times you want to listen/see the periods
@@ -16,7 +16,7 @@ hz_1 = sinusoid(frequency1, amps = 10, dur = 2*number_of_periods, fs = 22050, su
 hz_2 = sinusoid(frequency2, amps = 10, dur = 2*number_of_periods, fs = 22050, sum = FALSE, 
                   show = FALSE, colors = NULL)
 
-sr = 22050*5 #Sample rate
+sr = 22050 #Sample rate
 #Listening to sine waves
 listen(hz_1$wave1, f = sr)
 listen(hz_2$wave1, f = sr)
@@ -40,10 +40,11 @@ um <- hz_1$wave1[1:(length(hz_1$wave1)-1000)] #Original tone
 dois <- hz_2$wave1[1001:length(hz_2$wave1)] #Tone out of phase
 
 #Combining them
-combined = hz_1+hz_2
+combined = um+dois
 
 
 listen(combined, f = 22050)
+listen(hz_1$wave1+hz_2$wave1, f = 22050)
 
 ###################################
 ## Visualizing Crossing patterns ##

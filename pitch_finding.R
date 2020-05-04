@@ -15,7 +15,7 @@ p_alg<- function(periodo_em_pontos, sr){
   return(hz)
 }
 
-p_alg(23, 22050) #Para um periodo de 44.1 pontos, eu tenho 500Hz
+p_alg(24, 22050) #Para um periodo de 44.1 pontos, eu tenho 500Hz
 
 #Defining sinewave:
 frequency = 500
@@ -27,7 +27,7 @@ t = sinusoid(frequency,
              sum = FALSE,
              show = FALSE)
 
-lista_correlacoes <- ccf(t$wave1, t$wave1, plot = FALSE)[["acf"]]
+lista_correlacoes <- ccf(dois, dois, plot = TRUE)[["acf"]]
 lista_correlacoes <- lista_correlacoes[12:length(lista_correlacoes)]
 period <- which(lista_correlacoes == max(lista_correlacoes))
 oi = data.frame(delay = crosscor[["lag"]],

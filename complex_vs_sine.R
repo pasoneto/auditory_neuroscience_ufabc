@@ -3,7 +3,7 @@ require(phonTools)
 
 #Set the parameters (frequency in Hertz)
 frequency1 = 500
-frequency2 = 900
+frequency2 = 1000
 amplitude = 10
 
 #Set how many times you want to listen/see the periods
@@ -29,7 +29,7 @@ listen(hz_2$wave1, f = sr)
 n_p = 1
 plot(hz_1$wave1[1:45*n_p], type = 'ls', col = 'blue', ylab = 'Amplitude', xlab = 'Tempo (ms)', main = 'Ondas senoidais 500 Hz vs 1000 Hz', xlim = c(0, 45))
 par(new = TRUE)
-plot(hz_2$wave1[1:45*n_p], type = 'ls', col = 'red', ylab = '', xlab = '', main = '', xlim = c(0, 45))
+plot((hz_2$wave1[1:45*n_p])*-1, type = 'ls', col = 'red', ylab = '', xlab = '', main = '', xlim = c(0, 45))
 
 ########################
 ## DEFASANDO ESTIMULO ##

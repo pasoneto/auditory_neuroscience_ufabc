@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<style type="text/css">
+</style>
+    <title>Ear training</title>
+    <script src="jspsych-6.0.2/jspsych.js"></script>
+    <script src="jspsych-6.0.2/plugins/jspsych-audio-button-response.js"></script>
+    <script src="jspsych-6.0.2/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych-6.0.2/plugins/jspsych-html-button-response.js"></script>
+    <script src="jspsych-6.0.2/plugins/jspsych-fullscreen.js"></script>
+    <link href="jspsych-6.0.2/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    
+  </head>
+    <style>
+    body {
+    background-color: #000000;
+    color: #D3D3D3
+  </style>
+  <body></body>
+  <script>
+
+    /* create timeline */
+    var timeline = [];
+timeline.push({
+  type: 'fullscreen',
+  fullscreen_mode: false
+});
+  
+    var bemvindo = {
+      type: "html-button-response",
+      stimulus: 'Pablo gay!',
+      choices: ['Começar']
+    };
+    timeline.push(bemvindo);
+       
+    /* Treino em loop */
+
+    var test_stimuli = [
+          { son: 'sound/isolado1.wav', data: {test_part: 'test', correct_response: '5'}},
+          { son: 'sound/isolado2.wav', data: {test_part: 'test', correct_response: '5'}},
+          { son: 'sound/isolado3.wav', data: {test_part: 'test', correct_response: '5'}},
+    ];
+    
+    var test = {
+      type: "audio-button-response",
+      stimulus: jsPsych.timelineVariable('son'),
+      choices: jsPsych.NO_KEYS,
+      trial_duration: 5000,
+      prompt: "<p>Vai lá, bonzao.... responde ae</p>",
+      choices: ['500 cent', '1000 cent', '700mil cent', 'cent pa carai', '4006', 'pablo gay', '73'],
+      response_ends_trial: true,
+      data: jsPsych.timelineVariable('data'),
+      on_finish: function(data) {
+            data.correct = data.button_pressed == data.correct_response;
+    }
+}
+
+/*Treinando diferenciação*/
+var feedback = {
+        type: 'html-button-response',
+        choices: ['Sou gay e quero continuar'],
+        stimulus: function() {
+            var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+            if (last_trial_correct) {
+                return '<font size="5">Certo!<br><br>Aperte enter para continuar</font>';
+            } else {
+                return '<font size="5">Errado.<br><br>Aperte enter para tentar novamente</font>'
+            }
+        }
+    }
+
+
+
+
+/* 
+
+    var if_trial = {
+    type: 'html-keyboard-response',
+    stimulus: '<div style="font-size:60px;">Timed-out!</div><br>See how fast that was?<br>As a reminder, you have to indicate a value<br>and press the spacebar within five seconds.<br> <br>Press the spacebar to try again.',
+    choices: ['spacebar']
+} */
+
+/*     
+    var if_node = {
+      timeline: [if_trial],
+      conditional_function: function(){
+          // get the data from the previous trial,
+          // and check which key was pressed
+          var data = jsPsych.data.get().last(1).values()[0];
+          if(data.response === null){
+              return true;
+          } else {
+              return false;
+          }
+      }
+    } */
+
+    var test_procedure = {
+      timeline: [test, feedback],
+      timeline_variables: test_stimuli,
+      repetitions: 10,
+      randomize_order: true
+        }
+  
+timeline.push(test_procedure);  
+
+
+
+
+
+var acuracia = {
+        type: "html-keyboard-response",
+        choices: [13],
+        data: {
+            primeiro_treino: 'primeiro_treino'
+        },
+        stimulus: function() {
+
+            var trials = jsPsych.data.get().filter({
+                test_part: 'test'
+            });
+            var correct_trials = trials.filter({
+                correct: true
+            });
+            var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
+
+            return '<font size="5">A sua taxa de acerto foi ' + accuracy + '%.<br><br>Seu merda</font>';
+
+        }
+    }
+timeline.push(acuracia);
+
+    /* Treino em loop */
+
+    var cabou = {
+      type: "html-keyboard-response",
+      stimulus: "PENIS",
+      post_trial_gap: 0,
+      choices: ['spacebar']
+    };
+    timeline.push(cabou);
+    
+    /* start the experiment */
+
+    jsPsych.init({
+      timeline: timeline,
+      preload_audio: ['sound/isolado1.wav', 'sound/isolado2.wav', 'sound/isolado3.wav'],
+      on_finish: function(data) {
+      var resultJson = jsPsych.data.get().filter([{trial_type: 'survey-text'}, {trial_type: 'html-button-response'}, {trial_type: 'audio-keyboard-response'}]).json();
+      }
+    });
+  </script>
+</html>

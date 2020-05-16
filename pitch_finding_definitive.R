@@ -3,6 +3,7 @@ library(seewave)
 
 setwd('C:/Users/Lenovo/Desktop/world/Ciência/UFABC/Matérias/Auditory Neuroscience/audios_pavao')
 
+
 #https://cran.r-project.org/web/packages/soundgen/vignettes/acoustic_analysis.html#missing-fundamental
 pitch_finding <- function(pasta){
 
@@ -32,7 +33,10 @@ pitch_finding <- function(pasta){
 
 oi = pitch_finding(list.files())
 analise = analyze(list.files()[1],
-                  dynamicRange = 1000000,
+                  samplingRate = 22050,
+                  entropyThres = 1,
                   plot = TRUE,
                   pitchMethods = c('autocor', 'cep', 'spec'),
-                  nCands = 1)
+                  nCands = 3)
+
+print(list.files())

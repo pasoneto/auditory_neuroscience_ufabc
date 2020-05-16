@@ -433,7 +433,7 @@ timeline.push(acuracia);
   'sound/Pitch580Hz_DephaseDegreePIrad_Freqs580by580UpTo9280Hz.wav',            
   'sound/Pitch580Hz_DephaseDegreePIrad_Freqs580byNaNUpTo580Hz.wav'],
       on_finish: function(data) {
-      var resultJson = jsPsych.data.get().filter([{trial_type: 'survey-text'}, {trial_type: 'html-button-response'}, {trial_type: 'audio-keyboard-response'}]).json();
+      var resultJson = jsPsych.data.get().filter([{trial_type: 'html-button-response'}, {trial_type: 'audio-keyboard-response'}]).json();
       }
     });
   </script>

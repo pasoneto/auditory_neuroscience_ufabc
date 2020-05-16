@@ -29,7 +29,7 @@ timeline.push({
   
     var bemvindo = {
       type: "html-button-response",
-      stimulus: 'Pablo gay!',
+      stimulus: 'Pitch!',
       choices: ['Começar']
     };
     timeline.push(bemvindo);
@@ -221,7 +221,7 @@ timeline.push({
 /*Treinando diferenciação*/
 var feedback = {
         type: 'html-button-response',
-        choices: ['Sou gay e quero continuar'],
+        choices: ['Continuar'],
         stimulus: function() {
             var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
             if (last_trial_correct) {
@@ -287,7 +287,7 @@ var acuracia = {
             });
             var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
 
-            return '<font size="5">A sua taxa de acerto foi ' + accuracy + '%.<br><br>Seu merda</font>';
+            return '<font size="5">A sua taxa de acerto foi ' + accuracy + '%.<br><br>Precisa melhorar, hein...</font>';
 
         }
     }
@@ -297,7 +297,7 @@ timeline.push(acuracia);
 
     var cabou = {
       type: "html-keyboard-response",
-      stimulus: "PENIS",
+      stimulus: "Fim",
       post_trial_gap: 0,
       choices: ['spacebar']
     };

@@ -13,7 +13,7 @@ pitch_finding <- function(pasta){
   for(i in pasta){
       analise = analyze(i, plot = FALSE,
                   pitchMethods = c('autocor', 'cep', 'spec'),
-                  specPeak = 1,
+                  specPeak = 0,
                   nCands = 1)
       autocor[[i]] = median(analise$pitchAutocor, na.rm = TRUE)
       cepstral[[i]] = median(analise$pitchCep, na.rm = TRUE)

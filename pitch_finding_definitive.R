@@ -20,11 +20,11 @@ pitch_finding <- function(pasta){
       cepstral[[i]] = median(analise$pitchCep, na.rm = TRUE)
       spectral[[i]] = median(analise$pitchSpec, na.rm = TRUE)
   }
+  
   autocor = data.frame(autocor)
   cepstral = data.frame(cepstral)
   spectral = data.frame(spectral)
-  
-  
+
   data_final = dplyr::bind_rows(c(autocor, cepstral, spectral))
   #adding name to files
   data_final$file_names = pasta[i]
@@ -38,9 +38,76 @@ setwd(caminho)
 folder = list.files(path = caminho) 
 
 #Guardando arquivos para cada frequencia
-arquivos_finals = c()
+arquivos_finais = c()
 for(i in 1:length(folder)){
   setwd(paste(caminho, folder[i], sep=''))
   pasta = list.files(path = paste(caminho, folder[i], sep=''))
-  arquivos_finals[[i]] = pitch_finding(pasta)  
+  arquivos_finais[[i]] = pitch_finding(pasta)
+  print(paste('Terminei a pasta ', i, sep = ''))
 }
+
+#Naming each stimulus
+for(k in 1:length(arquivos_finais)){
+  arquivos_finais[[k]]$pitch_base = 0
+  arquivos_finais[[k]]$pitch_base = folder[k]
+}
+
+data = dplyr::bind_rows(arquivos_finais)
+
+#Setting path
+caminho = 'C:/Users/Lenovo/Desktop/world/Ciência/UFABC/Matérias/Auditory Neuroscience/'
+setwd(caminho)
+
+#Saving file
+write.csv(data, "pitch_finding.csv")
+
+
+
+##############
+## PLOTTING ##
+##############
+library(reshape2)
+require(ggplot2)
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(ggpubr)
+library(data.table)
+library(stringr)
+
+data = 
+  fread('pitch_finding.csv')
+
+data$V1 <- NULL
+folder
+data$file_names <- str_replace_all(data$file_names, paste("Pitch500Hz_DephaseDegreePIrad_Freqs", '')
+data$file_names <- str_replace_all(data$file_names, paste("Pitch540Hz_DephaseDegreePIrad_Freqs540byNaNUpTo540Hz.wav", '')
+data$file_names <- str_replace_all(data$file_names, paste("Pitch540Hz_DephaseDegreePIrad_Freqs540byNaNUpTo540Hz.wav", '')
+
+#Melting variables for visualization
+data = 
+  melt(data, 
+       id.vars = c("file_names", "pitch_base"), 
+       id.measures = c("autocor", "cepstral", "spectral"))
+
+
+
+#Computing statistics
+plot<- plyr::ddply(data, c("pitch_base", "variable"), summarise,
+                   N    = length(value),
+                   mean = mean(value, na.rm = TRUE),
+                   sd   = sd(value, na.rm = TRUE),
+                   se   = sd / sqrt(N))
+
+g_1 <- ggplot(plot, aes(x=as.factor(variable),y=mean, group = 1)) +
+  facet_wrap(~pitch_base)+
+  geom_errorbar(size = 0.8, aes(ymin=mean-se, ymax=mean+se), width=.2, position=position_dodge(0.5)) +
+  geom_point(shape = 21, size = 1, position=position_dodge(0.5), fill = 'black')
+g_1
+
+
+
+
+ggsave(g_1, filename = "g_2.png", dpi = 1200,
+       width = 6, height = 4.5, units = "in")
+

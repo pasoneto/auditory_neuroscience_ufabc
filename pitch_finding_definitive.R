@@ -9,6 +9,7 @@ pitch_finding <- function(pasta){
   autocor = c()
   cepstral = c()
   spectral = c()
+  file_name = c()
 
   for(i in 1:length(pasta)){
       audio = tuneR::readWave(pasta[i])
@@ -19,18 +20,22 @@ pitch_finding <- function(pasta){
       autocor[[i]] = median(analise$pitchAutocor, na.rm = TRUE)
       cepstral[[i]] = median(analise$pitchCep, na.rm = TRUE)
       spectral[[i]] = median(analise$pitchSpec, na.rm = TRUE)
+      file_name[[i]] = pasta[i]
   }
   
   autocor = data.frame(autocor)
   cepstral = data.frame(cepstral)
   spectral = data.frame(spectral)
+  file_name = data.frame(file_name)
 
-  data_final = dplyr::bind_rows(c(autocor, cepstral, spectral))
+  data_final = dplyr::bind_rows(c(autocor, cepstral, spectral, file_name))
   #adding name to files
-  data_final$file_names = pasta[i]
+
   
   return(data_final)
 }
+
+
 
 #Setting path
 caminho = 'C:/Users/Lenovo/Desktop/world/Ciência/UFABC/Matérias/Auditory Neuroscience/audio/'
@@ -79,18 +84,13 @@ data =
   fread('pitch_finding.csv')
 
 data$V1 <- NULL
-folder
-data$file_names <- str_replace_all(data$file_names, paste("Pitch500Hz_DephaseDegreePIrad_Freqs", '')
-data$file_names <- str_replace_all(data$file_names, paste("Pitch540Hz_DephaseDegreePIrad_Freqs540byNaNUpTo540Hz.wav", '')
-data$file_names <- str_replace_all(data$file_names, paste("Pitch540Hz_DephaseDegreePIrad_Freqs540byNaNUpTo540Hz.wav", '')
+
 
 #Melting variables for visualization
 data = 
   melt(data, 
-       id.vars = c("file_names", "pitch_base"), 
+       id.vars = c("file_name", "pitch_base"), 
        id.measures = c("autocor", "cepstral", "spectral"))
-
-
 
 #Computing statistics
 plot<- plyr::ddply(data, c("pitch_base", "variable"), summarise,
@@ -105,7 +105,9 @@ g_1 <- ggplot(plot, aes(x=as.factor(variable),y=mean, group = 1)) +
   geom_point(shape = 21, size = 1, position=position_dodge(0.5), fill = 'black')
 g_1
 
-
+ggplot(data, aes(x=value, colour = variable)) +
+  facet_wrap(~pitch_base)+
+  geom_histogram()
 
 
 ggsave(g_1, filename = "g_2.png", dpi = 1200,

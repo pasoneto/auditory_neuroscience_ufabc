@@ -113,3 +113,14 @@ ggplot(data, aes(x=value, colour = variable)) +
 ggsave(g_1, filename = "g_2.png", dpi = 1200,
        width = 6, height = 4.5, units = "in")
 
+
+caminho = 'C:/Users/Lenovo/Desktop/world/Ciência/UFABC/Matérias/Auditory Neuroscience/audio/510'
+setwd(caminho)
+audio = tuneR::readWave(list.files(path = caminho)[1])
+#Setting path
+analise = analyze(audio@left, plot = FALSE,
+                  pitchMethods = c('autocor', 'cep', 'spec'),
+                  samplingRate = audio@samp.rate
+)
+autocor_500 = analise$pitchAutocor
+autocor_501 = analise$pitchAutocor

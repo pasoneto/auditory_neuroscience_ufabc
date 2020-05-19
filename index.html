@@ -134,21 +134,12 @@ var acuracia = {
             });
             var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
 
-            return "<font size='5'>A sua taxa de acerto foi " + accuracy + "%.<br><br>Precisa melhorar, hein...</font>";
+            return "<font size='5'>A sua taxa de acerto foi " + accuracy + "%.<br><br>Precisa melhorar, hein...<br><br> Aperte enter para <br>baixar os dados</font>";
 
         }
     }
 timeline.push(acuracia);
 
-    /* Treino em loop */
-
-    var cabou = {
-      type: 'html-keyboard-response',
-      stimulus: 'Fim',
-      post_trial_gap: 0,
-      choices: ['spacebar']
-    };
-    timeline.push(cabou);
     
     /* start the experiment */
 

@@ -99,8 +99,10 @@ timeline.push({
 var feedback = {
         type: 'html-button-response',
         choices: ['Continuar'],
-        stimulus: jsPsych.data.get().last(1).values()[0]
-
+        stimulus: function() {
+            var last_trial = jsPsych.data.get().last(1).values()[0];
+                return "<font size='5'> + last_trial + </font>";
+      }
 }
 
     var test_procedure = {

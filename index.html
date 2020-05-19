@@ -80,11 +80,7 @@ timeline.push({
 
 ];
 
-
-
-
-
-    
+  
     
     var test = {
       type: 'audio-button-response',
@@ -113,36 +109,10 @@ var feedback = {
         }
     }
 
-
-
-
-/* 
-
-    var if_trial = {
-    type: 'html-keyboard-response',
-    stimulus: '<div style='font-size:60px;'>Timed-out!</div><br>See how fast that was?<br>As a reminder, you have to indicate a value<br>and press the spacebar within five seconds.<br> <br>Press the spacebar to try again.',
-    choices: ['spacebar']
-} */
-
-/*     
-    var if_node = {
-      timeline: [if_trial],
-      conditional_function: function(){
-          // get the data from the previous trial,
-          // and check which key was pressed
-          var data = jsPsych.data.get().last(1).values()[0];
-          if(data.response === null){
-              return true;
-          } else {
-              return false;
-          }
-      }
-    } */
-
     var test_procedure = {
       timeline: [test, feedback],
       timeline_variables: test_stimuli,
-      repetitions: 10,
+      repetitions: 1,
       randomize_order: true
         }
   

@@ -102,9 +102,9 @@ var feedback = {
         stimulus: function() {
             var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
             if (last_trial_correct) {
-                return '<font size='5'>Certo!<br><br>Aperte enter para continuar</font>';
+                return "<font size='5'>Certo!<br><br>Aperte enter para continuar</font>";
             } else {
-                return '<font size='5'>Errado.<br><br>Aperte enter para tentar novamente</font>'
+                return "<font size='5'>Errado.<br><br>Aperte enter para tentar novamente</font>"
             }
         }
     }
@@ -138,7 +138,7 @@ var acuracia = {
             });
             var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
 
-            return '<font size='5'>A sua taxa de acerto foi ' + accuracy + '%.<br><br>Precisa melhorar, hein...</font>';
+            return "<font size='5'>A sua taxa de acerto foi ' + accuracy + '%.<br><br>Precisa melhorar, hein...</font>";
 
         }
     }

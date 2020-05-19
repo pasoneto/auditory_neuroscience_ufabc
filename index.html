@@ -100,7 +100,7 @@ var feedback = {
         type: 'html-button-response',
         choices: ['Continuar'],
         stimulus: function() {
-            var last_trial = jsPsych.data.get().last(1).values()[0];
+            var last_trial = jsPsych.data.get().last(1).values()[0].desvio;
                 return last_trial
       }
 }

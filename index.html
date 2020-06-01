@@ -88,18 +88,16 @@ var feedback0 = {
         type: 'html-button-response',
         choices: ['Continuar'],
         stimulus: function() {
-            var last_trial = jsPsych.data.get().last(1).values()[0].desvio;
-                return last_trial
-      }
-}
-
-    var test_procedure0 = {
-      timeline: [test0, feedback0],
-      timeline_variables: test_stimuli0,
-      repetitions: 1,
-      randomize_order: true
+            var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+            if (last_trial_correct) {
+                return '<font size="5">Certo!<br><br>Aperte enter para continuar</font>';
+            } else {
+                return '<font size="5">Errado.<br><br>Aperte enter para tentar novamente</font>'
+            }
         }
-  
+    }
+
+ 
 timeline.push(test_procedure0);  
 
 

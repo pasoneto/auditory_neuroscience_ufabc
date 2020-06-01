@@ -40,11 +40,35 @@ var instruc_1 = {
     pages: [
         'Neste experimento você vai escutar dois sons.',
         'A sua tarefa é compará-los e dizer se o primeiro é igual ao segundo',
-        'Escute alguns exemplos de sons iguais<br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF11_Entrained.wav"</audio><br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF25_Entrained.wav"</audio><br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF5_Entrained.wav"</audio><br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Dephased.wav"</audio><br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Entrained.wav"</audio>',
-        'Agora escute alguns exemplos de sons diferentes<br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF11_Entrained.wav"</audio>         <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF25_Entrained.wav"</audio>           <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF5_Entrained.wav"</audio>            <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Dephased.wav"</audio>                   <br><br> <audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Entrained.wav"</audio>',
+        'Escute alguns exemplos de sons iguais',
+        'Igual...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF11_Entrained.wav"</audio>',
+        'Igual...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF25_Entrained.wav"</audio>',
+        'Igual...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF5_Entrained.wav"</audio>',
+        'Igual...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Dephased.wav"</audio>',
+        'Igual...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Entrained.wav"</audio>',
+
+        'Agora escute alguns exemplos de sons diferentes',
+
+        'Diferente...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF11_Entrained.wav"</audio>',
+        'Diferente...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF25_Entrained.wav"</audio>',
+        'Diferente...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF5_Entrained.wav"</audio>',
+        'Diferente...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Dephased.wav"</audio>',
+        'Diferente...<br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Entrained.wav"</audio>',
+        
         'Muito bem!',
         'Essas diferenças podem ser um pouco mais sutis',
-        'Escute alguns exemplos de sons que são diferentes<br> mas de forma mais sutil do que os sons anteriores <br><br> <audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF11_Entrained.wav"</audio>         <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF25_Entrained.wav"</audio>           <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF5_Entrained.wav"</audio>            <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0included_maxF25_Dephased.wav"</audio>                   <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0included_maxF25_Entrained.wav"</audio>',
+        'Escute alguns exemplos de sons que são diferentes<br> mas nem tanto!',
+        
+
+
+        'Diferente, mas nem tanto...<br><audio controls><source src="sound/Tone540Hz_vs_Pitch580Hz_F0absent_maxF11_Entrained.wav"</audio>',
+        'Diferente, mas nem tanto...<br><audio controls><source src="sound/Tone540Hz_vs_Pitch580Hz_F0absent_maxF25_Entrained.wav"</audio>',
+        'Diferente, mas nem tanto...<br><audio controls><source src="sound/Tone540Hz_vs_Pitch580Hz_F0absent_maxF5_Entrained.wav"</audio>',
+        'Diferente, mas nem tanto...<br><audio controls><source src="sound/Tone540Hz_vs_Pitch580Hz_F0included_maxF25_Dephased.wav"</audio>',
+        'Diferente, mas nem tanto...<br><audio controls><source src="sound/Tone540Hz_vs_Pitch580Hz_F0included_maxF25_Entrained.wav"</audio>',
+
+
+        
         'Muito bem!<br>Vamos fazer uma sessão de treinamento antes de começar o experimento pra valer!'
     ],
     show_clickable_nav: true
@@ -97,20 +121,22 @@ var feedback0 = {
         }
     }
 
- 
+
 timeline.push(test_procedure0);  
 
 
 
     /* Treino em loop */
 
-    var inicio = {
-      type: 'html-keyboard-response',
-      stimulus: 'Diga se o primeiro som é igual ao segundo.<br>Depois que você responder, a diferença real (em Hertz)<br>entre o primeiro e o segundo som aparecerá na tela.<br>Quando terminar, me envie o arquivo csv que<br>será baixado no seu pc.<br><br>Aperte a barra de espaço para começar!<br>Vlw flws.',
-      post_trial_gap: 0,
-      choices: ['spacebar']
-    };
-    timeline.push(inicio);
+
+var instruc_2 = {
+    type: 'instructions',
+    pages: [
+      'Muito bem!<br>Vamos Começar o experimento pra valer!'
+    ],
+    show_clickable_nav: true
+}
+timeline.push(instruc_2);
 
        
     /* Treino em loop */

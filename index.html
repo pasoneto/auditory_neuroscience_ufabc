@@ -8,6 +8,7 @@
     <script src='jspsych-6.0.2/plugins/jspsych-audio-button-response.js'></script>
     <script src='jspsych-6.0.2/plugins/jspsych-html-keyboard-response.js'></script>
     <script src='jspsych-6.0.2/plugins/jspsych-html-button-response.js'></script>
+    <script src="jspsych-6.0.2/plugins/jspsych-instructions.js"></script>
     <script src='jspsych-6.0.2/plugins/jspsych-fullscreen.js'></script>
     <link href='jspsych-6.0.2/css/jspsych.css' rel='stylesheet' type='text/css'></link>
     
@@ -22,17 +23,33 @@
 
     /* create timeline */
     var timeline = [];
-timeline.push({
-  type: 'fullscreen',
-  fullscreen_mode: false
+    timeline.push({
+      type: 'fullscreen',
+    fullscreen_mode: false
 });
-  
-    var bemvindo = {
+
+var bemvindo = {
       type: 'html-button-response',
       stimulus: 'Pitch!',
       choices: ['Começar']
     };
     timeline.push(bemvindo);
+
+var instruc_1 = {
+    type: 'instructions',
+    pages: [
+        'Neste experimento você vai escutar dois sons.',
+        'A sua tarefa é dizer se o primeiro som é igual ao segundo',
+        'Agora escute alguns exemplos de sons iguais<br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF11_Entrained.wav"</audio>         <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF25_Entrained.wav"</audio>           <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF5_Entrained.wav"</audio>            <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Dephased.wav"</audio>                   <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Entrained.wav"</audio>',
+        'Agora escute alguns exemplos de sons diferentes<br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF11_Entrained.wav"</audio>         <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF25_Entrained.wav"</audio>           <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF5_Entrained.wav"</audio>            <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Dephased.wav"</audio>                   <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Entrained.wav"</audio>',
+        'Muito bem, agora vamos treinar algumas vezes.',
+        'Você vai ouvir os sons e deverá indicar se eles são iguais ou diferentes'
+    ],
+    show_clickable_nav: true
+}
+timeline.push(instruc_1);
+
+
 
     /* Treino em loop */
 
@@ -77,7 +94,7 @@ timeline.push({
           {son: 'sound/Tone500Hz_vs_Pitch520Hz_F0absent_maxF25_Entrained.wav' , data: {test_part: 'test', correct_response: '1', desvio: '20Hz', harmonico: '25', f0: '0', dephased: '0'}},     
           {son: 'sound/Tone500Hz_vs_Pitch520Hz_F0absent_maxF5_Entrained.wav' , data: {test_part: 'test', correct_response: '1', desvio: '20Hz', harmonico: '5', f0: '0', dephased: '0'}},      
           {son: 'sound/Tone500Hz_vs_Pitch520Hz_F0included_maxF25_Dephased.wav' , data: {test_part: 'test', correct_response: '1', desvio: '20Hz', harmonico: '25', f0: '1', dephased: '1'}},    
-          {son: 'sound/Tone500Hz_vs_Pitch520Hz_F0included_maxF25_Entrained.wav' , data: {test_part: 'test', correct_response: '1', desvio: '40Hz', harmonico: '25', f0: '1', dephased: '0'}},   
+          {son: 'sound/Tone500Hz_vs_Pitch520Hz_F0included_maxF25_Entrained.wav' , data: {test_part: 'test', correct_response: '1', desvio: '20Hz', harmonico: '25', f0: '1', dephased: '0'}},   
           {son: 'sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF11_Entrained.wav' , data: {test_part: 'test', correct_response: '1', desvio: '40Hz', harmonico: '11', f0: '0', dephased: '0'}},     
           {son: 'sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF25_Entrained.wav' , data: {test_part: 'test', correct_response: '1', desvio: '40Hz', harmonico: '25', f0: '0', dephased: '0'}},     
           {son: 'sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF5_Entrained.wav' , data: {test_part: 'test', correct_response: '1', desvio: '40Hz', harmonico: '5', f0: '0', dephased: '0'}},      
@@ -119,7 +136,7 @@ var feedback = {
     var test_procedure = {
       timeline: [test, feedback],
       timeline_variables: test_stimuli,
-      repetitions: 1,
+      repetitions: 4,
       randomize_order: true
         }
   

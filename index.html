@@ -39,15 +39,68 @@ var instruc_1 = {
     type: 'instructions',
     pages: [
         'Neste experimento você vai escutar dois sons.',
-        'A sua tarefa é dizer se o primeiro som é igual ao segundo',
-        'Agora escute alguns exemplos de sons iguais<br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF11_Entrained.wav"</audio>         <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF25_Entrained.wav"</audio>           <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF5_Entrained.wav"</audio>            <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Dephased.wav"</audio>                   <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Entrained.wav"</audio>',
+        'A sua tarefa é compará-los e dizer se o primeiro é igual ao segundo',
+        'Escute alguns exemplos de sons iguais<br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF11_Entrained.wav"</audio>         <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF25_Entrained.wav"</audio>           <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF5_Entrained.wav"</audio>            <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Dephased.wav"</audio>                   <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Entrained.wav"</audio>',
         'Agora escute alguns exemplos de sons diferentes<br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF11_Entrained.wav"</audio>         <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF25_Entrained.wav"</audio>           <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF5_Entrained.wav"</audio>            <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Dephased.wav"</audio>                   <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Entrained.wav"</audio>',
-        'Muito bem, agora vamos treinar algumas vezes.',
-        'Você vai ouvir os sons e deverá indicar se eles são iguais ou diferentes'
+        'Muito bem!',
+        'Essas diferenças podem ser um pouco mais sutis',
+        'Escute alguns exemplos de sons que são diferentes<br> mas de forma mais sutil do que os sons anteriores <br><br> <audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF11_Entrained.wav"</audio>         <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF25_Entrained.wav"</audio>           <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF5_Entrained.wav"</audio>            <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0included_maxF25_Dephased.wav"</audio>                   <br><br><audio controls><source src="sound/Tone500Hz_vs_Pitch540Hz_F0included_maxF25_Entrained.wav"</audio>',
+        'Muito bem!<br>Vamos fazer uma sessão de treinamento antes de começar o experimento pra valer!'
     ],
     show_clickable_nav: true
 }
 timeline.push(instruc_1);
+
+
+var test_stimuli0 = [
+          {son: 'sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF11_Entrained.wav', data: {test_part: 'treino', correct_response: '0', desvio: 'Igual', harmonico: '11', f0: '0', dephased: '0'}},      
+          {son: 'sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF25_Entrained.wav' , data: {test_part: 'treino', correct_response: '0', desvio: 'Igual', harmonico: '25', f0: '0', dephased: '0'}},     
+          {son: 'sound/Tone500Hz_vs_Pitch500Hz_F0absent_maxF5_Entrained.wav' , data: {test_part: 'treino', correct_response: '0', desvio: 'Igual', harmonico: '5', f0: '0', dephased: '0'}},      
+          {son: 'sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Dephased.wav' , data: {test_part: 'treino', correct_response: '0', desvio: 'Igual', harmonico: '25', f0: '1', dephased: '1'}},    
+          {son: 'sound/Tone500Hz_vs_Pitch500Hz_F0included_maxF25_Entrained.wav' , data: {test_part: 'treino', correct_response: '1', desvio: 'Igual', harmonico: '25', f0: '1', dephased: '0'}},   
+          {son: 'sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF11_Entrained.wav', data: {test_part: 'treino', correct_response: '0', desvio: 'Diferente', harmonico: '11', f0: '0', dephased: '0'}},      
+          {son: 'sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF25_Entrained.wav' , data: {test_part: 'treino', correct_response: '0', desvio: 'Diferente', harmonico: '25', f0: '0', dephased: '0'}},     
+          {son: 'sound/Tone500Hz_vs_Pitch580Hz_F0absent_maxF5_Entrained.wav' , data: {test_part: 'treino', correct_response: '0', desvio: 'Diferente', harmonico: '5', f0: '0', dephased: '0'}},      
+          {son: 'sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Dephased.wav' , data: {test_part: 'treino', correct_response: '0', desvio: 'Diferente', harmonico: '25', f0: '1', dephased: '1'}},    
+          {son: 'sound/Tone500Hz_vs_Pitch580Hz_F0included_maxF25_Entrained.wav' , data: {test_part: 'treino', correct_response: '1', desvio: 'Diferente', harmonico: '25', f0: '1', dephased: '0'}},   
+          {son: 'sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF11_Entrained.wav', data: {test_part: 'treino', correct_response: '0', desvio: 'Diferente', harmonico: '11', f0: '0', dephased: '0'}},      
+          {son: 'sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF25_Entrained.wav' , data: {test_part: 'treino', correct_response: '0', desvio: 'Diferente', harmonico: '25', f0: '0', dephased: '0'}},     
+          {son: 'sound/Tone500Hz_vs_Pitch540Hz_F0absent_maxF5_Entrained.wav' , data: {test_part: 'treino', correct_response: '0', desvio: 'Diferente', harmonico: '5', f0: '0', dephased: '0'}},      
+          {son: 'sound/Tone500Hz_vs_Pitch540Hz_F0included_maxF25_Dephased.wav' , data: {test_part: 'treino', correct_response: '0', desvio: 'Diferente', harmonico: '25', f0: '1', dephased: '1'}},    
+          {son: 'sound/Tone500Hz_vs_Pitch540Hz_F0included_maxF25_Entrained.wav' , data: {test_part: 'treino', correct_response: '1', desvio: 'Diferente', harmonico: '25', f0: '1', dephased: '0'}},   
+];
+
+var test0 = {
+      type: 'audio-button-response',
+      stimulus: jsPsych.timelineVariable('son'),
+      choices: jsPsych.NO_KEYS,
+      prompt: '<p>Responda...</p>',
+      choices: ['Igual', 'Diferente'],
+      response_ends_trial: true,
+      data: jsPsych.timelineVariable('data'),
+      on_finish: function(data) {
+            data.correct = data.button_pressed == data.correct_response;
+    }
+}
+
+/*Treinando diferenciação*/
+var feedback0 = {
+        type: 'html-button-response',
+        choices: ['Continuar'],
+        stimulus: function() {
+            var last_trial = jsPsych.data.get().last(1).values()[0].desvio;
+                return last_trial
+      }
+}
+
+    var test_procedure0 = {
+      timeline: [test0, feedback0],
+      timeline_variables: test_stimuli0,
+      repetitions: 1,
+      randomize_order: true
+        }
+  
+timeline.push(test_procedure0);  
 
 
 
